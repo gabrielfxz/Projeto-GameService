@@ -8,16 +8,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProjetoEscola_API.Data
 {
-    public class EscolaContext: DbContext
+    public class SiteContext: DbContext
     {
-        public EscolaContext(DbContextOptions<EscolaContext> options): base (options)
+        public SiteContext(DbContextOptions<SiteContext> options): base (options)
         {
 
         }
-        public DbSet<Aluno> Aluno {get;set;}
-
-        public DbSet<Curso> Curso {get;set;}
-        
+          
         public DbSet<User> Usuario {get;set;}
     }
 }

@@ -118,3 +118,4 @@
 /Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/obj/Debug/net6.0/ProjetoEscola_API.pdb
 /Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/obj/Debug/net6.0/ProjetoEscola_API.genruntimeconfig.cache
 /Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/obj/Debug/net6.0/ref/ProjetoEscola_API.dll
+/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/bin/Debug/net6.0/package-lock.json

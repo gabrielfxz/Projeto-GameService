@@ -16,13 +16,24 @@ namespace ProjetoEscola_API.Controllers
     public class HomeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly EscolaContext? _context;
+        private readonly SiteContext? _context;
         public HomeController(
             IConfiguration configuration,
-            EscolaContext context)
+            SiteContext context)
         {
             _configuration = configuration;
             _context = context;
+        }
+
+        [HttpGet]
+        public ActionResult<List<User>> GetAll()
+        {
+            if(_context.Usuario is not null) {
+                return _context.Usuario.ToList();
+            }
+            else {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "falha no acesso ao banco de dados");
+            }
         }
 
         [HttpPost]
