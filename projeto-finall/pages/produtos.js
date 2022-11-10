@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Card from "../components/Cards";
+import Paginacao from "../components/Paginacao";
+import Footer from "../components/Footer";
 
 export default function Produtos() {
   return (
@@ -39,13 +41,13 @@ export default function Produtos() {
             </div>
           </div>
         </div>
-     
 
-    <div className="flex flex-wrap">
-    <Card/>
-        
-    </div>
-    </div>
+        <div className="flex flex-wrap">
+          <Card />
+        </div>
+        <Paginacao />
+      </div>
+      <Footer />
     </>
   );
 }
