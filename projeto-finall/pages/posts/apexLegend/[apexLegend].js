@@ -13,19 +13,19 @@ const product = {
   ],
   images: [
     {
-      src: "../../overwatch2.jpg",
+      src: "../../apex.jpg",
       alt: "Two each of gray, white, and black shirts laying flat.",
     },
     {
-      src: "../../overwatch.jpg",
+      src: "../../apex2.jpg",
       alt: "Model wearing plain black basic tee.",
     },
     {
-      src: "../../overwatch3.png",
+      src: "../../apex3.jpg",
       alt: "Model wearing plain gray basic tee.",
     },
     {
-      src: "../..//overwatch2.jpg",
+      src: "../../apex4.jpg",
       alt: "Model wearing plain white basic tee.",
     },
   ],
@@ -61,7 +61,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Overwatch() {
+export default function Destiny() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 

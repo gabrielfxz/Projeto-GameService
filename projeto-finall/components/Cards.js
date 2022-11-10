@@ -26,8 +26,7 @@ const products = [
     id: 2,
     name: "Basic T",
     href: "../posts/cod/cod",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageSrc: "../warzone5.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -36,8 +35,7 @@ const products = [
     id: 3,
     name: "Saci",
     href: "../posts/overwatch/overwatch",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageSrc: "../overwatchCard.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -45,9 +43,8 @@ const products = [
   {
     id: 4,
     name: "Cod",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    href: "../posts/valorant/valorant",
+    imageSrc: "../valorantCard.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -55,9 +52,8 @@ const products = [
   {
     id: 5,
     name: "GTAV",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    href: "../posts/apexLegend/apexLegend",
+    imageSrc: "../apexCard.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
