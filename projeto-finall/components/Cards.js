@@ -1,81 +1,40 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-const products = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "../posts/destiny/destiny2",
-    imageSrc: "../destinyCard.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 2,
-    name: "Basic T",
-    href: "../posts/cod/cod",
-    imageSrc: "../warzone5.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Saci",
-    href: "../posts/overwatch/overwatch",
-    imageSrc: "../overwatchCard.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 4,
-    name: "Cod",
-    href: "../posts/valorant/valorant",
-    imageSrc: "../valorantCard.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 5,
-    name: "GTAV",
-    href: "../posts/apexLegend/apexLegend",
-    imageSrc: "../apexCard.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-
-  // More products...
-];
+import React, {useState, useEffect} from "react";
 
 export default function Example() {
+  const urlAPI = "http://localhost:5172/api/home";
+  const initialState = {
+    produto: { id: 0, name: "", desc: "", preco: 0, img: ""},
+    lista: [],
+  };
+
+  const [produto, setProduto] = useState(initialState.produto);
+  const [lista, setLista] = useState(initialState.lista);
+
+  const dataFromAPI = async () => {
+    return await axios(urlAPI)
+      .then((resp) => resp.data)
+      .catch((err) => err);
+  };
+
+  useEffect(() => {
+    dataFromAPI()
+      .then(setLista)
+      .catch((error) => console.log(error));
+  }, [produto]);
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Customers also purchased
+          Produtos / Serviços
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-10 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-8">
-          {products.map((product) => (
+          {lista.map((product) => (
             <div key={product.id} className="group relative">
               <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
                 <img
-                  src={product.imageSrc}
+                  src={product.img}
                   alt={product.imageAlt}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
@@ -91,7 +50,7 @@ export default function Example() {
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  {product.price}
+                  {product.preco}
                 </p>
               </div>
             </div>
