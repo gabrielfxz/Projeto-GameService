@@ -36,5 +36,23 @@ namespace projetoFinalApi.Controllers
             }
         }
 
+        [HttpGet("{ServicoId}")]
+        public ActionResult<List<Servico>> Get(int ServicoId)
+        {
+            try
+            {
+                var result = _context.Services.Find(ServicoId);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+            }
+            catch
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
+            }
+        }
+
     }
 }
