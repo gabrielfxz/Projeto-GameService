@@ -1,4 +1,4 @@
-namespace ProjetoEscola_API.Models
+namespace projetoFinalApi.Models
 {
     public class User
     {

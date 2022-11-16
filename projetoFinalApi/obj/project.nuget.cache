@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R8FmnoQIysylNyI+nguzSy5gaE4TWWg7prvySez8XlR9uyZdgp+UH8yKDl5WjX9oEuvePolvcG0R7fKV/cz3ZA==",
+  "dgSpecHash": "3tu8rV7FoplpsNRchWzkPZAPcozLRHp32Tfyex5JshukNCkmdv2VsZiOai/M+CCwdhXUeWe11Al9KDVzLZL6aQ==",
   "success": true,
-  "projectFilePath": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/ProjetoEscola_API.csproj",
+  "projectFilePath": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/projetoFinalApi.csproj",
   "expectedPackageFiles": [
     "/Users/u21428/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/u21428/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using ProjetoEscola_API.Data;
-using ProjetoEscola_API.Models;
+using projetoFinalApi.Data;
+using projetoFinalApi.Models;
 
-namespace ProjetoEscola_API.Controllers
+namespace projetoFinalApi.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]

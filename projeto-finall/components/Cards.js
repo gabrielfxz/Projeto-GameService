@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
 
 export default function Example() {
-  const urlAPI = "http://localhost:5172/api/home";
+  const urlAPI = "http://localhost:5172/api/servico";
   const initialState = {
     produto: { id: 0, name: "", desc: "", preco: 0, img: ""},
     lista: [],
@@ -21,6 +22,9 @@ export default function Example() {
       .then(setLista)
       .catch((error) => console.log(error));
   }, [produto]);
+
+  console.log(`lista: ${lista}`)
+  console.log(`produtos: ${produto}`)
 
   return (
     <div className="bg-white">

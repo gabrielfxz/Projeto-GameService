@@ -2644,9 +2644,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/ProjetoEscola_API.csproj",
-      "projectName": "ProjetoEscola_API",
-      "projectPath": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/ProjetoEscola_API.csproj",
+      "projectUniqueName": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/projetoFinalApi.csproj",
+      "projectName": "projetoFinalApi",
+      "projectPath": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/projetoFinalApi.csproj",
       "packagesPath": "/Users/u21428/.nuget/packages/",
       "outputPath": "/Users/u21428/projeto patricia/projetoFinal/projetoFinalApi/obj/",
       "projectStyle": "PackageReference",

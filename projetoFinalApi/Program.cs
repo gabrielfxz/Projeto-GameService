@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ProjetoEscola_API.Data;
+using projetoFinalApi.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
