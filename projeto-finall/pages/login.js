@@ -13,8 +13,42 @@
   ```
 */
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+//import { useNavigate } from "react-router"
+import AuthService from '../services/AuthService'
+import { useState } from 'react';
+import { useRouter } from 'next/router'
 
-export default function Example() {
+export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const router = useRouter()
+
+  async function handleSubmit(evento){
+    evento.preventDefault()
+    const userForm = {username,password}
+
+    if(!username || !password) {
+      setMessage("Digite o username e senha")
+    }else {
+      AuthService.login(username,password).then(
+        () => {
+          console.log(`localStorage: ${localStorage.getItem("user")}`)
+          router.push("/produtos")
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data && 
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+          setMessage(resMessage)
+        }
+      )
+    }
+  }
+
   return (
     <>
       {/*
@@ -43,7 +77,7 @@ export default function Example() {
               </a>
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -53,11 +87,14 @@ export default function Example() {
                 <input
                   id="email-address"
                   name="email"
-                  type="email"
+                  //type="email"
                   autoComplete="email"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
+                  value={username}
+                  onChange={({target}) => {setUsername(target.value)
+                  setMessage("")}}
                 />
               </div>
               <div>
@@ -72,6 +109,9 @@ export default function Example() {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
+                  value={password}
+                  onChange={({target}) => {setPassword(target.value)
+                  setMessage("")}}
                 />
               </div>
             </div>
@@ -107,6 +147,7 @@ export default function Example() {
                 Sign in
               </button>
             </div>
+            <h4 className="msgErro">{message}</h4>
           </form>
         </div>
       </div>
