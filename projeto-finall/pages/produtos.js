@@ -3,10 +3,36 @@ import Navbar from "../components/Navbar";
 import Card from "../components/Cards";
 import Paginacao from "../components/Paginacao";
 import Footer from "../components/Footer";
+import UserService from "../services/UserService";
+import { useState,useEffect } from "react";
 
 export default function Produtos() {
-  return (
-    <>
+
+  const [mens, setMens] = useState([]);
+  
+  useEffect(() => {
+    UserService.getProfessorBoard().then(
+      (response) => {
+        console.log("useEffect getProfessorBoard: " + response.data)
+        //setLista(response.data);
+        setMens(null);
+      },
+      (error) => {
+        const _mens =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setMens(_mens);
+        console.log("_mens: " + _mens);
+      }
+    );
+  }, []);
+
+  const renderProducts = () => {
+    return (
+      <>
       <Navbar />
       <div className="container mx-auto py-9 md:py-12 px-4 md:px-6">
         <div className="flex items-strech justify-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8">
@@ -48,6 +74,13 @@ export default function Produtos() {
         <Paginacao />
       </div>
       <Footer />
+      </>
+    )
+  }
+
+  return (
+    <>
+      {(mens) ? "problema com conexão ou autorização" : renderProducts()}
     </>
   );
 }

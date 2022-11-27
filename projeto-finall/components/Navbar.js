@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+//import AuthService from "../services/AuthService";
+//import { useEffect, useState } from 'react';
 import { Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -15,6 +17,14 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
+// const [currentUser, setCurrentUser] = useState(undefined);
+// useEffect(() => {
+//   const user = AuthService.getCurrentUser();
+//   if (user) {
+//     setCurrentUser(user);
+//   }
+// }, []);
 
 const solutions = [
   {
@@ -217,11 +227,28 @@ export default function Example() {
             </Popover>
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            {/* {currentUser ? (<a
+              href="/logout"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            >
+              Logout
+            </a>) : (<a
+              href="/login"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            >
+              Login
+            </a>)} */}
+            <a
+              href="/logout"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+            >
+              logout
+            </a>
             <a
               href="/login"
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
-              Sign up
+              login
             </a>
           </div>
         </div>

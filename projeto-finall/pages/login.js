@@ -35,6 +35,7 @@ export default function Login() {
         () => {
           console.log(`localStorage: ${localStorage.getItem("user")}`)
           router.push("/produtos")
+          //window.location.reload()          
         },
         (error) => {
           const resMessage =
