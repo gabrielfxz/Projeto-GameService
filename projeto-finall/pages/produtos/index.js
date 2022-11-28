@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import UserService from "../../services/UserService";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -106,6 +106,7 @@ export default function Index({ produtos }) {
               </div>
             </div>
           </div>
+          <Paginacao />
         </div>
         <Footer />
       </>

@@ -1,7 +1,6 @@
 import Navbar from "../../components/Navbar";
 import { StarIcon } from "@heroicons/react/20/solid";
-import { RadioGroup } from "@headlessui/react";
-import { useState, useEffect } from "react";
+import { Cart } from "../../components/CartContext";
 
 export async function getStaticProps(context) {
   const { params } = context;
@@ -38,39 +37,27 @@ function classNames(...classes) {
 }
 
 export default function ProdutosId({ produto }) {
+  const cart = Cart();
+  const add = (produtos) => () => {
+    cart.addCart(produtos);
+  };
   return (
     <>
       <div>
         <Navbar />
         <div className="pt-6">
-          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
             <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
               <img
                 src={produto.img}
-                alt={produto.img}
+                alt={`Foto do produto: ${produto.nome}`}
                 className="h-full w-full object-cover object-center"
               />
             </div>
-            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-              <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                <img
-                  src={produto.img}
-                  alt={produto.img}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-              <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                <img
-                  src={produto.img}
-                  alt={produto.img}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-            </div>
             <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
               <img
-                 src={produto.img}
-                 alt={produto.img}
+                src={produto.img}
+                alt={produto.img}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -117,12 +104,13 @@ export default function ProdutosId({ produto }) {
                     R$ {produto.preco.toFixed(2)}
                   </p>
                 </div>
-                <a
-                  href="/login"
+                <button
+                  id="add"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  onClick={add(produto)}
                 >
                   Adicionar ao carrinho
-                </a>
+                </button>
               </form>
             </div>
 
@@ -135,8 +123,6 @@ export default function ProdutosId({ produto }) {
                   </div>
                 </div>
               </div>
-
-           
             </div>
           </div>
         </div>
