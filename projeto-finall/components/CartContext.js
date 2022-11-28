@@ -3,11 +3,17 @@
 }
 
 import { createContext, useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const [produtos, setProdutos] = useState([]);
+  const [remove, setRemove] = useState(false);
   const [cart, setCart] = useState({});
+
+  const { id } = useParams();
+
   useEffect(() => {
     const cart = window.localStorage.getItem("cart");
     if (cart) {
@@ -44,8 +50,61 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  function removerServico(id) {
+    fetch(`http://localhost:5172/api/servico/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setProdutos(produtos.filter((produto) => produto.id !== id));
+      })
+      .catch((error) => {
+        console.log("Erro ao remover: " + error);
+      });
+  }
+
+  function adicionarServico(servico) {
+    fetch("http://localhost:5172/api/servico", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(servico),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setProdutos([...produtos, data]);
+      })
+      .catch((error) => {
+        console.log("Erro ao adicionar: " + error);
+      });
+  }
+
+  function editarServico(servico) {
+    useEffect(() => {
+      fetch(`http://localhost:5172/api/servico/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setProdutos(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, [id]);
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addCart, removeCart }}>
+    <CartContext.Provider
+      value={{ cart, addCart, removeCart, removerServico, adicionarServico, editarServico }}
+    >
       {children}
     </CartContext.Provider>
   );

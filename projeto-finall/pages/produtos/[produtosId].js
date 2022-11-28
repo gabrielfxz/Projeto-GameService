@@ -1,4 +1,4 @@
-import Navbar from "../../components/Navbar";
+ import Navbar from "../../components/Navbar";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Cart } from "../../components/CartContext";
 

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\COTUCA\\projetoFinalSite1\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj": {}
+    "C:\\Users\\diogo\\OneDrive\\Área de Trabalho\\Estudos Programação\\COTUCA\\4° Semestre\\Desenvolvimento para Internet III\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj": {}
   },
   "projects": {
-    "C:\\COTUCA\\projetoFinalSite1\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj": {
+    "C:\\Users\\diogo\\OneDrive\\Área de Trabalho\\Estudos Programação\\COTUCA\\4° Semestre\\Desenvolvimento para Internet III\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\COTUCA\\projetoFinalSite1\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj",
+        "projectUniqueName": "C:\\Users\\diogo\\OneDrive\\Área de Trabalho\\Estudos Programação\\COTUCA\\4° Semestre\\Desenvolvimento para Internet III\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj",
         "projectName": "projetoFinalApi",
-        "projectPath": "C:\\COTUCA\\projetoFinalSite1\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj",
-        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\COTUCA\\projetoFinalSite1\\projetoFinalSite\\projetoFinalApi\\obj\\",
+        "projectPath": "C:\\Users\\diogo\\OneDrive\\Área de Trabalho\\Estudos Programação\\COTUCA\\4° Semestre\\Desenvolvimento para Internet III\\projetoFinalSite\\projetoFinalApi\\projetoFinalApi.csproj",
+        "packagesPath": "C:\\Users\\diogo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\diogo\\OneDrive\\Área de Trabalho\\Estudos Programação\\COTUCA\\4° Semestre\\Desenvolvimento para Internet III\\projetoFinalSite\\projetoFinalApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\diogo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

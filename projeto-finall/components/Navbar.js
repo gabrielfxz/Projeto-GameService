@@ -54,6 +54,13 @@ export default function Navbar() {
               Carrinho
               {itemCarrinho > 0 && <span> ({itemCarrinho})</span>}
             </a>
+
+            <a
+              href="/admin"
+              className="text-base font-medium text-gray-500 hover:text-gray-900 cursor-pointer"
+            >
+              Painel de Serviços
+            </a>
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             {/* {currentUser ? (<a

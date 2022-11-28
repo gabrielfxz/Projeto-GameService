@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Paginacao from "../../components/Paginacao";
 
-export async function getStaticProps() {
+  export async function getStaticProps() {
   const data = await fetch("http://localhost:5172/api/servico");
   const produtos = await data.json();
   return {
