@@ -1,34 +1,25 @@
 import Navbar from "../components/Navbar";
 export default function Index() {
   return (
-    <div className="overflow-hidden h-[100vh]">
-      <Navbar />
+    <div className="overflow-hidden h-screen flex justify-center bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900">
       <div>
-        <section className="text-gray-100">
+        <section className="text-zinc-50">
           <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
             <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
               <h1 className="text-5xl font-bold leading-none sm:text-6xl">
-                Ac Mattis
-                <span className="text-violet-400">senectus</span>erat pharetra
+                Uma nova forma de estar a
+                <span className="text-pink-500"> frente</span> de seu oponente
               </h1>
               <p className="mt-6 mb-8 text-lg sm:mb-12">
-                Dictum aliquam porta in condimentum ac integer
-                turpis pulvinar, est scelerisque ligula sem
+                logue para acessar nossos serviços
               </p>
-              <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+              <div className="flex flex-col space-y-4 sm:items-center sm:justify-end sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                 <a
                   rel="noopener noreferrer"
-                  href="#"
-                  className="px-8 py-3 text-lg font-semibold rounded bg-violet-400 text-gray-900"
+                  href="/login"
+                  className="px-8 py-3 text-lg font-semibold rounded bg-pink-500 text-white shadow-xl"
                 >
-                  Suspendisse
-                </a>
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="px-8 py-3 text-lg font-semibold border rounded border-gray-100"
-                >
-                  Malesuada
+                  Login
                 </a>
               </div>
             </div>

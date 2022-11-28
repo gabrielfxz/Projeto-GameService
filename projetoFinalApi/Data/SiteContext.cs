@@ -18,5 +18,7 @@ namespace projetoFinalApi.Data
         public DbSet<User> Usuario {get;set;}
 
         public DbSet<Servico> Services {get;set;}
+
+        public DbSet<Compra> Compras {get;set;}
     }
 }

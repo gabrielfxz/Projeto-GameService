@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import UserService from "../services/UserService";
 import { Cart } from "../components/CartContext";
 
 export default function Carrinho({ produto }) {
+
+  const [mens, setMens] = useState([]);
+
+  useEffect(() => {
+    UserService.getProfessorBoard().then(
+      (response) => {
+        console.log("useEffect getProfessorBoard: " + response.data);
+        //setLista(response.data);
+        setMens(null);
+      },
+      (error) => {
+        const _mens =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setMens(_mens);
+        console.log("_mens: " + _mens);
+      }
+    );
+  }, []);
+
   const cart = Cart();
   const remove = (id) => {
     cart.removeCart(id);
   };
 
-  return (
+  const renderCart = () => {
+    return(
     <>
       <div className="flex flex-col w-full p-6 space-y-4 sm:p-10 text-black">
         <h2 className="text-xl font-semibold">Carrinho</h2>
@@ -94,5 +119,10 @@ export default function Carrinho({ produto }) {
         </div>
       </div>
     </>
+    )
+  }
+
+  return (
+    <>{mens ? "problema com conexão ou autorização" : renderCart()};</>
   );
 }

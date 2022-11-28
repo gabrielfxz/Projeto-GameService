@@ -11,13 +11,13 @@ using projetoFinalApi.Models;
 namespace projetoFinalApi.Controllers
 {
     
-    [Route("/api/servico")]
+    [Route("/api/compra")]
     [ApiController]
-    public class ServController : ControllerBase
+    public class CompraController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly SiteContext? _context;
-        public ServController(
+        public CompraController(
             IConfiguration configuration,
             SiteContext context)
         {
@@ -26,22 +26,22 @@ namespace projetoFinalApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Servico>> GetAll()
+        public ActionResult<List<Compra>> GetAll()
         {
-            if(_context.Services is not null) {
-                return _context.Services.ToList();
+            if(_context.Compras is not null) {
+                return _context.Compras.ToList();
             }
             else {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "falha no acesso ao banco de dados");
             }
         }
 
-        [HttpGet("{ServicoId}")]
-        public ActionResult<List<Servico>> Get(int ServicoId)
+        [HttpGet("{CompraId}")]
+        public ActionResult<List<Compra>> Get(int CompraId)
         {
             try
             {
-                var result = _context.Services.Find(ServicoId);
+                var result = _context.Compras.Find(CompraId);
                 if (result == null)
                 {
                     return NotFound();
@@ -55,15 +55,15 @@ namespace projetoFinalApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> post(Servico model)
+        public async Task<ActionResult> post(Compra model)
         {
             try
             {
-                _context.Services.Add(model);
+                _context.Compras.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
-                    return Created($"/api/servico/{model.Id}", model);
+                    return Created($"/api/compra/{model.id}", model);
                 }
             }
             catch
@@ -73,40 +73,39 @@ namespace projetoFinalApi.Controllers
             // retorna BadRequest se não conseguiu incluir
             return BadRequest();
         }
-        [HttpPut("{ServicoId}")]
-        public async Task<IActionResult> put(int ServicoId, Servico dadosServicoAlt)
+        [HttpPut("{CompraId}")]
+        public async Task<IActionResult> put(int CompraId, Compra dadosCompraAlt)
         {
             try
             {
-                //verifica se existe servico a ser alterado
-                var result = await _context.Services.FindAsync(ServicoId);
-                if (ServicoId != result.Id)
+                //verifica se existe compra a ser alterada
+                var result = await _context.Compras.FindAsync(CompraId);
+                if (CompraId != result.id)
                 {
                     return BadRequest();
                 }
-                result.name = dadosServicoAlt.name;
-                result.Id = dadosServicoAlt.Id;
+                result.id = dadosCompraAlt.id;
                 await _context.SaveChangesAsync();
-                return Created($"/api/servico/{dadosServicoAlt.Id}", dadosServicoAlt);
+                return Created($"/api/compra/{dadosCompraAlt.id}", dadosCompraAlt);
             }
             catch
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
         }
-        [HttpDelete("{ServicoId}")]
-        public async Task<ActionResult> delete(int ServicoId)
+        [HttpDelete("{CompraId}")]
+        public async Task<ActionResult> delete(int CompraId)
         {
             try
             {
-                //verifica se existe servico a ser excluído
-                var servico = await _context.Services.FindAsync(ServicoId);
-                if (servico == null)
+                //verifica se existe compra a ser excluída
+                var compra = await _context.Compras.FindAsync(CompraId);
+                if (compra == null)
                 {
                     //método do EF
                     return NotFound();
                 }
-                _context.Remove(servico);
+                _context.Remove(compra);
                 await _context.SaveChangesAsync();
                 return NoContent();
             }
