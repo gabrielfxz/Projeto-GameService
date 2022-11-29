@@ -7,7 +7,7 @@ export default function Carrinho({ produto }) {
   const [mens, setMens] = useState([]);
 
   useEffect(() => {
-    UserService.getProfessorBoard().then(
+    UserService.getUserBoard().then(
       (response) => {
         console.log("useEffect getProfessorBoard: " + response.data);
         //setLista(response.data);

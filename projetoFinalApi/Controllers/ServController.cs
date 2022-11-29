@@ -36,6 +36,11 @@ namespace projetoFinalApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("servprof")]
+        [Authorize(Roles = "professor")]
+        public string Professor() => "Professor";
+
         [HttpGet("{ServicoId}")]
         public ActionResult<List<Servico>> Get(int ServicoId)
         {

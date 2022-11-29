@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 const getPublicContent = () => {
     return axios.get(API_URL + "servico");
 };
-const getProfessorBoard = async () => {
+const getUserBoard = async () => {
     return await axios.get(API_URL + "servico", {
         headers: {
             Authorization:
@@ -20,8 +20,19 @@ const getProfessorBoard = async () => {
         }
     });
 };
+
+const getProfessorBoard = async () => {
+    return await axios.get(API_URL + "servico/servprof", {
+        headers: {
+            Authorization:
+                'Bearer ' + user.token
+        }
+    });
+};
+
 const UserService = {
     getPublicContent,
+    getUserBoard,
     getProfessorBoard
 };
 

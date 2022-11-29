@@ -38,9 +38,10 @@ export default function Admin({ produtos }) {
   const cart = Cart();
   const remove = (id) => {
     cart.removerServico(id);
+    window.location.reload()
   };
 
-  const renderCart = () => {
+  const renderServicos = () => {
     return (
       <>
         <Navbar />
@@ -147,5 +148,5 @@ export default function Admin({ produtos }) {
     );
   };
 
-  return <>{mens ? "problema com conexão ou autorização" : renderCart()};</>;
+  return <>{mens ? "problema com conexão ou autorização" : renderServicos()};</>;
 }
