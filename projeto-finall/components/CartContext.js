@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setProdutos([...produtos, data]);
+        setProdutos(produtos.filter((produto) => produto.id !== id), data);
       })
       .catch((error) => {
         console.log("Erro ao adicionar: " + error);

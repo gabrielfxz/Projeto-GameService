@@ -1,4 +1,5 @@
 import Navbar from "../../components/Navbar";
+import { useState, useEffect } from "react";
 
 export async function getStaticProps(context) {
   const { params } = context;
@@ -29,7 +30,16 @@ export async function getStaticPaths() {
   };
 }
 
-export default function editarProdutos({produto}) {
+export default function editarProdutos({ produto }) {
+
+  const [product, setProduct] = useState(produto)
+  const dadosDosInputs = (e) => {
+    const { produtos, value } = e.target;
+    setProduct({
+      ...product,
+      [produtos]: value,
+    });
+  };
   return (
     <>
       <Navbar />
@@ -43,7 +53,7 @@ export default function editarProdutos({produto}) {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form action="http://localhost:5172/api/servico" method="POST" role="form">
               <div className="shadow-md sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
@@ -59,10 +69,9 @@ export default function editarProdutos({produto}) {
                         name="name"
                         id="name"
                         autoComplete="name"
+                        onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
-                        {produto.name}
-                      
                     </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label
@@ -76,10 +85,9 @@ export default function editarProdutos({produto}) {
                         name="name"
                         id="name"
                         autoComplete="name"
+                        value={produto.descricao}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
-                        {produto.descricao}
-                   
                     </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label
@@ -88,12 +96,12 @@ export default function editarProdutos({produto}) {
                       >
                         Preço do Serviço
                       </label>
-                      {produto.preco}
                       <input
                         type="price"
                         name="price"
                         id="price"
                         autoComplete="price"
+                        value={produto.preco}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -104,7 +112,6 @@ export default function editarProdutos({produto}) {
                       >
                         URL da imagem
                       </label>
-                      {produto.img}
                       <div className="mt-1 flex rounded-md shadow-sm">
                         <input
                           type="text"
@@ -112,6 +119,7 @@ export default function editarProdutos({produto}) {
                           id="company-website"
                           className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="http://www.example.com"
+                          value={produto.img}
                         />
                       </div>
                     </div>
@@ -122,7 +130,7 @@ export default function editarProdutos({produto}) {
                   <button
                     type="submit"
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    onClick={() => adiciona()}
+                    onClick={() => adiciona(product)}
                   >
                     Save
                   </button>
