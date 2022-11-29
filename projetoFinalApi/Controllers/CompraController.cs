@@ -26,10 +26,10 @@ namespace projetoFinalApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Compra>> GetAll()
+        public ActionResult<List<Compras>> GetAll()
         {
-            if(_context.Compras is not null) {
-                return _context.Compras.ToList();
+            if(_context.Compra is not null) {
+                return _context.Compra.ToList();
             }
             else {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "falha no acesso ao banco de dados");
@@ -37,11 +37,11 @@ namespace projetoFinalApi.Controllers
         }
 
         [HttpGet("{CompraId}")]
-        public ActionResult<List<Compra>> Get(int CompraId)
+        public ActionResult<List<Compras>> Get(int CompraId)
         {
             try
             {
-                var result = _context.Compras.Find(CompraId);
+                var result = _context.Compra.Find(CompraId);
                 if (result == null)
                 {
                     return NotFound();
@@ -55,11 +55,11 @@ namespace projetoFinalApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> post(Compra model)
+        public async Task<ActionResult> post(Compras model)
         {
             try
             {
-                _context.Compras.Add(model);
+                _context.Compra.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
@@ -74,12 +74,12 @@ namespace projetoFinalApi.Controllers
             return BadRequest();
         }
         [HttpPut("{CompraId}")]
-        public async Task<IActionResult> put(int CompraId, Compra dadosCompraAlt)
+        public async Task<IActionResult> put(int CompraId, Compras dadosCompraAlt)
         {
             try
             {
                 //verifica se existe compra a ser alterada
-                var result = await _context.Compras.FindAsync(CompraId);
+                var result = await _context.Compra.FindAsync(CompraId);
                 if (CompraId != result.id)
                 {
                     return BadRequest();
@@ -99,7 +99,7 @@ namespace projetoFinalApi.Controllers
             try
             {
                 //verifica se existe compra a ser excluída
-                var compra = await _context.Compras.FindAsync(CompraId);
+                var compra = await _context.Compra.FindAsync(CompraId);
                 if (compra == null)
                 {
                     //método do EF
