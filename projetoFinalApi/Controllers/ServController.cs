@@ -90,6 +90,9 @@ namespace projetoFinalApi.Controllers
                     return BadRequest();
                 }
                 result.name = dadosServicoAlt.name;
+                result.descricao = dadosServicoAlt.descricao;
+                result.preco = dadosServicoAlt.preco;
+                result.img = dadosServicoAlt.img;
                 result.Id = dadosServicoAlt.Id;
                 await _context.SaveChangesAsync();
                 return Created($"/api/servico/{dadosServicoAlt.Id}", dadosServicoAlt);

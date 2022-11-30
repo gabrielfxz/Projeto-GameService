@@ -35,7 +35,7 @@ export default function editarProdutos({ produto }) {
 
   const urlAPI = "http://localhost:5172/api/servico"
   const initialState = {
-    services: {id: 0, name: "", preco: 0, descricao:"", img:""},
+    services: {id: 0, name: "", descricao:"", preco: 0, img:""},
     lista:[],
   }
 
@@ -55,42 +55,36 @@ export default function editarProdutos({ produto }) {
     setServices({
       ...services,
       [name]: value,
+      
     });
   };
 
   function listaAtualizada(services, add = true){
       const lista1 = lista.filter(a => a.id !== services.id)
-      if(add) lista1.unshift(services)
+      if(add) lista1.push(services)
       return lista1
   }
 
-  const adicionarProdutos = async () => {
-    const produto = services
-    services.preco = Number(services.preco)
-    const metodo = services.id ? "put" : "post"
-    const url = services.id ? `${urlAPI}/${produto.id}` : urlAPI
-    axios[metodo](url, produto).then(resp => {
-      let lista = listaAtualizada(resp.data)
-      setServices(initialState.services)
-      setLista(lista)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
 
   const alterarServico = async(produto) => {
     console.log(produto)
     //setServices(produto)
     produto.preco = Number(produto.preco)
-    const metodo = produto.id ? "put" : "post"
+    //const metodo = produto.id ? "put" : "post"
     const url = urlAPI + "/" + produto.id
-    axios[metodo](url, produto).then(resp => {
+    console.log(url)
+    console.log(produto)
+    axios["put"](url, produto).then(resp => {
       let lista = listaAtualizada(resp.data)
-      setServices(produto)
-      setLista(lista)
+      //setServices(produto)
+      //setLista(lista)
+      console.log(produto)
+      console.log(lista)
     }).catch(error => {
       console.log(error)
     })
+    console.log(produto)
+    console.log(lista)
   }
 
   return (
@@ -120,6 +114,7 @@ export default function editarProdutos({ produto }) {
                         type="id"
                         name="id"
                         id="id"
+                        //value={produto.id}
                         onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -135,6 +130,7 @@ export default function editarProdutos({ produto }) {
                         type="text"
                         name="name"
                         id="name"
+                        //value={services.name}
                         onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -150,6 +146,7 @@ export default function editarProdutos({ produto }) {
                         type="text"
                         name="descricao"
                         id="descricao"
+                        //value={services.descricao}
                         onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -164,6 +161,7 @@ export default function editarProdutos({ produto }) {
                       <input
                         type="price"
                         name="preco"
+                        value={services.preco}
                         onChange={dadosDosInputs}
                         id="preco"
                         autoComplete="price"
@@ -181,6 +179,7 @@ export default function editarProdutos({ produto }) {
                         <input
                           type="text"
                           name="img"
+                          //value={services.img}
                           onChange={dadosDosInputs}
                           id="img"
                           className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -190,7 +189,7 @@ export default function editarProdutos({ produto }) {
                     </div>
                   </div>
                 </div>
-
+              
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
