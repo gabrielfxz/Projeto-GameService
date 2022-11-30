@@ -23,10 +23,10 @@ export default function adicionaProdutos() {
   }, [services])
 
   const dadosDosInputs = (e) => {
-    const { produtos, value } = e.target;
+    const { name, value } = e.target;
     setServices({
       ...services,
-      [produtos]: value,
+      [name]: value,
     });
   };
 
@@ -81,7 +81,6 @@ export default function adicionaProdutos() {
                         type="text"
                         name="name"
                         id="name"
-                        autoComplete="name"
                         onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -95,10 +94,9 @@ export default function adicionaProdutos() {
                       </label>
                       <input
                         type="text"
-                        name="name"
-                        id="name"
+                        name="descricao"
+                        id="descricao"
                         onChange={dadosDosInputs}
-                        autoComplete="name"
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -111,9 +109,9 @@ export default function adicionaProdutos() {
                       </label>
                       <input
                         type="price"
-                        name="price"
+                        name="preco"
                         onChange={dadosDosInputs}
-                        id="price"
+                        id="preco"
                         autoComplete="price"
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -128,9 +126,9 @@ export default function adicionaProdutos() {
                       <div className="mt-1 flex rounded-md shadow-sm">
                         <input
                           type="text"
-                          name="url"
+                          name="img"
                           onChange={dadosDosInputs}
-                          id="company-website"
+                          id="img"
                           className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="http://www.example.com"
                         />

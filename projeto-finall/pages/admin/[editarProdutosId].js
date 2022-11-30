@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export async function getStaticProps(context) {
   const { params } = context;
@@ -32,14 +33,66 @@ export async function getStaticPaths() {
 
 export default function editarProdutos({ produto }) {
 
-  const [product, setProduct] = useState(produto)
+  const urlAPI = "http://localhost:5172/api/servico"
+  const initialState = {
+    services: {id: 0, name: "", preco: 0, descricao:"", img:""},
+    lista:[],
+  }
+
+  const [services, setServices] = useState(initialState.services)
+  const [lista, setLista] = useState(initialState.lista)
+
+  const dataFromApi = async () =>{
+    return await axios(urlAPI).then(resp => resp.data).catch(err => err)
+  }
+
+  useEffect(() =>{
+    dataFromApi().then(setLista).catch((error) => console.log(error))
+  }, [services])
+
   const dadosDosInputs = (e) => {
-    const { produtos, value } = e.target;
-    setProduct({
-      ...product,
-      [produtos]: value,
+    const { name, value } = e.target;
+    setServices({
+      ...services,
+      [name]: value,
     });
   };
+
+  function listaAtualizada(services, add = true){
+      const lista1 = lista.filter(a => a.id !== services.id)
+      if(add) lista1.unshift(services)
+      return lista1
+  }
+
+  const adicionarProdutos = async () => {
+    const produto = services
+    services.preco = Number(services.preco)
+    const metodo = services.id ? "put" : "post"
+    const url = services.id ? `${urlAPI}/${produto.id}` : urlAPI
+    axios[metodo](url, produto).then(resp => {
+      let lista = listaAtualizada(resp.data)
+      setServices(initialState.services)
+      setLista(lista)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  const alterarServico = async(produto) => {
+    console.log(produto)
+    //setServices(produto)
+    produto.preco = Number(produto.preco)
+    const metodo = produto.id ? "put" : "post"
+    const url = urlAPI + "/" + produto.id
+    axios[metodo](url, produto).then(resp => {
+      let lista = listaAtualizada(resp.data)
+      setServices(produto)
+      setLista(lista)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   return (
     <>
       <Navbar />
@@ -53,10 +106,24 @@ export default function editarProdutos({ produto }) {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="http://localhost:5172/api/servico" method="POST" role="form">
               <div className="shadow-md sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
+                  <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium"
+                      >
+                        id
+                      </label>
+                      <input
+                        type="id"
+                        name="id"
+                        id="id"
+                        onChange={dadosDosInputs}
+                        className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="first-name"
@@ -68,7 +135,6 @@ export default function editarProdutos({ produto }) {
                         type="text"
                         name="name"
                         id="name"
-                        autoComplete="name"
                         onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -82,10 +148,9 @@ export default function editarProdutos({ produto }) {
                       </label>
                       <input
                         type="text"
-                        name="name"
-                        id="name"
-                        autoComplete="name"
-                        value={produto.descricao}
+                        name="descricao"
+                        id="descricao"
+                        onChange={dadosDosInputs}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -98,10 +163,10 @@ export default function editarProdutos({ produto }) {
                       </label>
                       <input
                         type="price"
-                        name="price"
-                        id="price"
+                        name="preco"
+                        onChange={dadosDosInputs}
+                        id="preco"
                         autoComplete="price"
-                        value={produto.preco}
                         className="mt-1 block w-full rounded-md p-3 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -115,11 +180,11 @@ export default function editarProdutos({ produto }) {
                       <div className="mt-1 flex rounded-md shadow-sm">
                         <input
                           type="text"
-                          name="url"
-                          id="company-website"
+                          name="img"
+                          onChange={dadosDosInputs}
+                          id="img"
                           className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="http://www.example.com"
-                          value={produto.img}
                         />
                       </div>
                     </div>
@@ -128,15 +193,13 @@ export default function editarProdutos({ produto }) {
 
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    type="submit"
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    onClick={() => adiciona(product)}
+                    onClick={() => alterarServico(services)}
                   >
                     Save
                   </button>
                 </div>
               </div>
-            </form>
           </div>
         </div>
       </div>

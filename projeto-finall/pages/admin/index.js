@@ -77,6 +77,11 @@ export default function Admin({ produtos }) {
                             {item.name}
                           </h3>
                         </div>
+                        <div className="space-y-1">
+                          <h3 className="text-lg font-semibold leading-snug sm:pr-8">
+                            {item.descricao}
+                          </h3>
+                        </div>
                         <div className="text-right">
                           <p className="text-lg font-bold">
                             {item.preco.toLocaleString("pt-br", {
@@ -85,6 +90,7 @@ export default function Admin({ produtos }) {
                             })}
                           </p>
                         </div>
+                        
                       </div>
                       <div className="flex flex-col text-sm">
                         <a href={`/admin/${item.id}`}>
